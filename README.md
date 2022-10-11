@@ -3,11 +3,12 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2.
 
 ## Development server
+Run npm i
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `npm start or ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
-
+## Paste your own key from google maps api in line 9 of file index.html : " src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdgblgVUdggM7QcZdNxyQRTN00&libraries=places,directions"
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Build
