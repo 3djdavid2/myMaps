@@ -97,17 +97,18 @@ export class MapaComponent implements OnInit {
 
   private cargarAutocomplete() {
 
+    // const autocomplete = new google.maps.places.Autocomplete(this.renderer.selectRootElement(this.inputPlaces.nativeElement), { })
+
     const autocomplete = new google.maps.places.Autocomplete(this.renderer.selectRootElement(this.inputPlaces.nativeElement), {
       componentRestrictions: {
         country: ["CL"]
       },
-      fields: ["address_components", "geometry"],
+      fields: ["address_components", "geometry", "place_id"],
       types: ["address"],
     })
 
 
     google.maps.event.addListener(autocomplete, 'place_changed', () => {
-
       const place: any = autocomplete.getPlace();
       console.log("el place completo es:", place)
 
@@ -123,6 +124,7 @@ export class MapaComponent implements OnInit {
 
   llenarFormulario(place: any) {
 
+    console.log(place)
     const addressNameFormat: any = {
       'street_number': 'short_name',
       'route': 'long_name',
@@ -179,6 +181,23 @@ export class MapaComponent implements OnInit {
 
     markerPosition.setMap(this.mapa);
     this.markers.push(markerPosition);
+
+    google.maps.event.addListener(this.mapa, 'click', (evento: google.maps.MapMouseEvent) => {
+      const marker = new google.maps.Marker({
+        position: evento.latLng,
+        animation: google.maps.Animation.DROP,
+      });
+      marker.setDraggable(true)
+      marker.setMap(this.mapa);
+
+      google.maps.event.addListener(marker, 'click', (event) => { 
+        marker.setMap(null);
+        
+      })
+
+    })
+
+
   };
 
 
